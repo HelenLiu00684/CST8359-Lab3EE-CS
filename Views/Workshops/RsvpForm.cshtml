@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Lab3EE.Models.Rsvp
+
+@{
+    ViewData["Title"] = "RSVP Form";
+}
+
+<h1>Workshop RSVP Form</h1>
+
+<p>Please enter your information and select a workshop.</p>
+
+@* This form sends the Rsvp data to the Confirm POST action. *@
+<form asp-controller="Workshops"
+      asp-action="Confirm"
+      method="post">
+
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label">
+            Full Name
+        </label>
+
+        <input asp-for="FullName"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="WorkshopTitle" class="form-label">
+            Workshop
+        </label>
+
+        <select asp-for="WorkshopTitle"
+                class="form-select">
+
+            <option value="">Select a workshop</option>
+            <option value="Routing Basics">Routing Basics</option>
+            <option value="EF Core Intro">EF Core Intro</option>
+            <option value="Razor Essentials">Razor Essentials</option>
+        </select>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="NeedsAccommodation"
+               class="form-check-input" />
+
+        <label asp-for="NeedsAccommodation"
+               class="form-check-label">
+            I need accommodation
+        </label>
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Submit RSVP
+    </button>
+
+    <a asp-controller="Workshops"
+       asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+</form>

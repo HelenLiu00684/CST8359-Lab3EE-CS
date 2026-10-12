@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Lab3EE.Models.Rsvp>
+
+@{
+    ViewData["Title"] = "Registrations";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Workshop Registrations</h1>
+
+    <a asp-controller="Workshops"
+       asp-action="RsvpForm"
+       class="btn btn-primary">
+        New RSVP
+    </a>
+</div>
+
+@if (Model.Count == 0)
+{
+    @* This message appears when the registration list is empty. *@
+    <div class="alert alert-info">
+        There are no registrations yet.
+    </div>
+}
+else
+{
+    @* Displays all registrations in a table. *@
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Full Name</th>
+                <th>Workshop</th>
+                <th>Needs Accommodation</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @* Loops through every Rsvp object in the Model. *@
+            @foreach (var registration in Model)
+            {
+                <tr>
+                    <td>@registration.FullName</td>
+                    <td>@registration.WorkshopTitle</td>
+                    <td>
+                        @if (registration.NeedsAccommodation)
+                        {
+                            <span>Yes</span>
+                        }
+                        else
+                        {
+                            <span>No</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-controller="Workshops"
+   asp-action="Index"
+   class="btn btn-secondary">
+    Back to Workshops
+</a>

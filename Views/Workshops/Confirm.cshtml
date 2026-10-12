@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Lab3EE.Models.Rsvp
+
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<div class="alert alert-success">
+    @* Displays the message sent through ViewData. *@
+    <h1>@ViewData["Message"]</h1>
+
+    <p>Your RSVP has been recorded successfully.</p>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h2>Registration Details</h2>
+
+        @* Model contains the Rsvp object sent by the Controller. *@
+        <p>
+            <strong>Full Name:</strong>
+            @Model.FullName
+        </p>
+
+        <p>
+            <strong>Workshop:</strong>
+            @Model.WorkshopTitle
+        </p>
+
+        <p>
+            <strong>Needs Accommodation:</strong>
+
+            @if (Model.NeedsAccommodation)
+            {
+                <span>Yes</span>
+            }
+            else
+            {
+                <span>No</span>
+            }
+        </p>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-controller="Workshops"
+       asp-action="Registrations"
+       class="btn btn-primary">
+        View All Registrations
+    </a>
+
+    <a asp-controller="Workshops"
+       asp-action="RsvpForm"
+       class="btn btn-secondary">
+        Register Another Person
+    </a>
+</div>
